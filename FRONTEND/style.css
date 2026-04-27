@@ -1,0 +1,267 @@
+body {
+    font-family: system-ui, sans-serif;
+    margin: 0;
+    padding: 16px;
+    background: rgb(50, 50, 50);
+}
+
+.app {
+    max-width: 420px;
+    margin: 0 auto;
+    background: rgb(255, 255, 255);
+    border-radius: 16px;
+    padding: 4px;
+    box-shadow: 0 2px 10px rgb(0,0,0);
+}
+
+.topbar {
+    display: grid;
+    grid-template-columns: 50px 1fr 50px;
+    align-items: center;
+}
+
+#title {
+    font-size: 2rem;
+    font-weight: 800;
+    margin: 0;
+    text-align: center;
+    line-height: 1.2;
+    letter-spacing: 1px;
+    color: rgb(0, 0, 0)
+}
+
+.nav-btn {
+    width: 40px;
+    height: 40px;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+    border: 2px solid rgb(0, 0, 0);
+    color: rgb(0, 0, 0);
+}
+
+#backBtn {
+    justify-self: start;
+    transition: opacity 0.3s ease;
+    background: rgb(220, 220, 220);
+}
+
+#submitBtn {
+    justify-self: end;
+}
+
+.step {
+    font-size: 0.8rem;
+    color: rgb(100, 100, 100);
+    margin: 2px 4px;
+    overflow-x: auto;
+    white-space: nowrap;
+    line-height: 1.8;
+    min-height: 1.8em;
+    transition: opacity 0.3s ease;
+}
+
+.step span {
+    margin: 0 2px;
+}
+
+.step svg {
+    width: 16px;
+    height: 16px;
+    vertical-align: middle;
+    position: relative;
+    top: -2px;
+}
+
+.option-btn{
+    display: block;
+    width: 100%;
+    padding: 8px;
+    font-size: 1.1rem;
+    border-radius: 12px;
+    cursor: pointer;
+    font-weight: 600;
+    letter-spacing: 1px;
+    color: rgb(0, 0, 0);
+}
+
+.option-group {
+    padding: 0px 0px 0px 0px;
+}
+
+.group-heading {
+    font-size: 1.1rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-align: center;
+    margin: 0;
+}
+
+.group-options.stack {
+    display: flex;
+    flex-direction: column;
+    padding: 0px 0px 16px 0px; 
+}
+
+
+
+.group-options.grid-2,
+.group-options.grid-3,
+.group-options.grid-4 {
+    display: grid;
+    gap: 6px;
+    font-size: 1.5rem;
+    padding: 0px 0px 16px 0px;
+}
+
+.group-options.grid-2 {
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.group-options.grid-3 {
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.group-options.grid-4 {
+    grid-template-columns: repeat(4, 1fr);
+}
+
+.details-form {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 8px;
+}
+
+.details-label {
+    font-size: 1.3rem;
+    font-weight: 700;
+    text-align: center;
+}
+
+.notes-box {
+    width: 100%;
+    min-height: 160px;
+    padding: 12px;
+    box-sizing: border-box;
+    resize: vertical;
+
+    font-family: system-ui, sans-serif;
+    font-size: 1rem;
+    line-height: 1.4;
+
+    background: rgb(240, 240, 240);
+    border: 2px solid rgb(170, 170, 170);
+    border-radius: 12px;
+}
+
+.notes-box:focus {
+    outline: none;
+    border-color: rgb(0, 0, 0);
+    background: rgb(255, 255, 255);
+}
+
+.file-list {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.file-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+
+    padding: 8px 10px;
+    font-size: 0.9rem;
+    border-radius: 10px;
+    background: rgb(240, 240, 240);
+    border: 1px solid rgb(170, 170, 170);
+}
+
+.file-name {
+    flex: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.file-remove {
+    width: 28px;
+    height: 28px;
+    padding: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: rgb(255, 0, 0);
+    border: 2px solid rgb(0, 0, 0);
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.file-remove svg {
+    width: 20px;
+    height: 20px;
+}
+
+.media-actions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+}
+
+.icon-btn {
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: rgb(220, 220, 220);
+    border: 2px solid rgb(0, 0, 0);
+    border-radius: 12px;
+    cursor: pointer;
+}
+
+.icon-btn svg {
+    width: 30px;
+    height: 30px;
+}
+
+.final-summary {
+    padding: 12px;
+    border-radius: 12px;
+    background: rgb(220, 220, 220);
+    border: 2px solid rgb(150, 150, 150);
+    line-height: 1.4;
+}
+
+.option-btn {
+    display: block;
+    width: 100%;
+    padding: 8px;
+    font-size: 1.1rem;
+    border-radius: 12px;
+    cursor: pointer;
+    font-weight: 600;
+    letter-spacing: 1px;
+    color: rgb(0, 0, 0);
+
+    background: color-mix(
+    in srgb,
+    hsl(calc(var(--page-hue) + var(--hue-offset, 0)), 100%, 70%)
+        calc(100% - var(--fade)),
+    white var(--fade)
+    );
+
+    border: 2px solid color-mix(
+    in srgb,
+    hsl(calc(var(--page-hue) + var(--hue-offset, 0)), 100%, 30%)
+        calc(100% - var(--fade)),
+    white var(--fade)
+    );
+}
