@@ -1560,6 +1560,7 @@ function juanmode() {
             if (btnData.media) {
                 media.style.display = "block";
                 media.src = "";
+
                 setTimeout(() => {
                     media.src = btnData.media;
                 }, 10);
@@ -1569,7 +1570,7 @@ function juanmode() {
             }
 
             if (btnData.action) {
-                btnData.action();
+                setTimeout(btnData.action, 100);
             }
         };
 
