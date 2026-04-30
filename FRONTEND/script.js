@@ -1500,34 +1500,44 @@ function juanmode() {
 
     options.innerHTML = "";
 
-    const groupWrap = document.createElement("div");
-    groupWrap.className = "option-group";
+    const wrap = document.createElement("div");
 
-    const groupOptions = document.createElement("div");
-    groupOptions.className = "group-options stack";
+    wrap.style.display = "flex";
+    wrap.style.flexDirection = "column";
+    wrap.style.gap = "8px";
+    wrap.style.padding = "8px";
 
     const buttons = [
-        { text: "CRASH EVERYTHING! >:D", action: () => alert("SELF DESTRUCTION IN PROGRESS...") },
+        { text: "CRASH EVERYTHING", action: () => alert("SELF DESTRUCTION IN PROGRESS...") },
         { text: "CALL SUPERMAN", action: () => alert("THANK YOU! THANK YOU! THANK YOU! THANK YOU! THANK YOU! THANK YOU! THANK YOU! THANK YOU! THANK YOU! THANK YOU!") },
         { text: "CALL TRUMP", action: () => alert("I MEAN HONESTLY, HAVE YOU EVER SEEN A BUTTON LIKE THIS? I DON'T THINK SO. EXPERTS ARE CALLING IT A TOTAL GAME CHANGER. SOME ARE EVEN SAYING IT'S THE MOST SUCCESSFUL BUTTON IN THE HISTORY OF BUTTONS. YOU PRESS IT ONCE—JUST ONCE—AND IT'S LIKE, WOW. JUST WOW. NOBODY KNEW A BUTTON COULD BE THIS GOOD. INCREDIBLE. ABSOLUTELY INCREDIBLE.") },
         { text: "RESET LINE 4 SERVERS", action: () => alert("HOW ABOUT WE CALL AARON?") },
-        { text: "RESET LINE 5 SERVERS", action: () => alert("CALLING AARON...") },
-        { text: "RESET PRINT SERVERS", action: () => alert("NAH WE'RE CALLING AARON") }
+        { text: "RESET LINE 5 SERVERS", action: () => alert("NAH WE'RE CALLING AARON.") },
+        { text: "RESET PRINT SERVERS", action: () => alert("CALLING AARON...") }
     ];
 
     buttons.forEach(btnData => {
         const btn = document.createElement("button");
-        btn.className = "option-btn";
-        btn.style.setProperty("--fade", "0%");
-        btn.style.setProperty("--hue-offset", "0");
+
         btn.textContent = btnData.text;
         btn.onclick = btnData.action;
 
-        groupOptions.appendChild(btn);
+        btn.style.display = "block";
+        btn.style.width = "100%";
+        btn.style.padding = "12px";
+        btn.style.fontSize = "1.1rem";
+        btn.style.fontWeight = "700";
+        btn.style.letterSpacing = "1px";
+        btn.style.color = "black";
+        btn.style.background = "rgb(220, 220, 220)";
+        btn.style.border = "2px solid black";
+        btn.style.borderRadius = "12px";
+        btn.style.cursor = "pointer";
+
+        wrap.appendChild(btn);
     });
 
-    groupWrap.appendChild(groupOptions);
-    options.appendChild(groupWrap);
+    options.appendChild(wrap);
 }
 
 
