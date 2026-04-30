@@ -1497,6 +1497,8 @@ if (soyjuan) {
 function juanmode() {
     title.textContent = "JUAN MODE";
     title.style.textAlign = "center";
+    title.style.gridColumn = "1 / -1";
+
     stepLabel.textContent = "SUPER DUPER SECRET BUTTONS";
     stepLabel.style.textAlign = "center";
 
@@ -1506,11 +1508,22 @@ function juanmode() {
     options.innerHTML = "";
 
     const media = document.createElement("img");
-    media.style.width = "100%";
-    media.style.maxWidth = "300px";
-    media.style.display = "block";
-    media.style.margin = "0 auto 10px auto";
+    media.style.position = "fixed";
+    media.style.top = "50%";
+    media.style.left = "50%";
+    media.style.transform = "translate(-50%, -50%)";
+    media.style.maxWidth = "80vw";
+    media.style.maxHeight = "60vh";
     media.style.borderRadius = "12px";
+    media.style.zIndex = "9999";
+    media.style.display = "none";
+    media.style.boxShadow = "0 0 30px black";
+
+    document.body.appendChild(media);
+    media.onclick = () => {
+        media.style.display = "none";
+        media.src = "";
+    };
 
     const wrap = document.createElement("div");
     wrap.style.display = "flex";
@@ -1520,7 +1533,7 @@ function juanmode() {
 
     const buttons = [
         { text: "CRASH EVERYTHING", action: () => alert("SELF DESTRUCTION IN PROGRESS...") },
-        { text: "CALL SUPERMAN", action: () => alert("THANK YOU! THANK YOU! THANK YOU! THANK YOU! THANK YOU! THANK YOU! THANK YOU! THANK YOU! THANK YOU! THANK YOU!"), media: "ASSETS/THANKS.gif"},
+        { text: "CALL SUPERMAN", action: () => alert("THANK YOU! THANK YOU! THANK YOU! THANK YOU! THANK YOU! THANK YOU! THANK YOU! THANK YOU! THANK YOU! THANK YOU!"), media: "ASSETS/THANKS.gif" },
         { text: "CALL TRUMP", action: () => alert("I MEAN HONESTLY, HAVE YOU EVER SEEN A BUTTON LIKE THIS? I DON'T THINK SO. EXPERTS ARE CALLING IT A TOTAL GAME CHANGER. SOME ARE EVEN SAYING IT'S THE MOST SUCCESSFUL BUTTON IN THE HISTORY OF BUTTONS. YOU PRESS IT ONCE—JUST ONCE—AND IT'S LIKE, WOW. JUST WOW. NOBODY KNEW A BUTTON COULD BE THIS GOOD. INCREDIBLE. ABSOLUTELY INCREDIBLE.") },
         { text: "RESET LINE 4 SERVERS", action: () => alert("HOW ABOUT WE CALL AARON?") },
         { text: "RESET LINE 5 SERVERS", action: () => alert("NAH WE'RE CALLING AARON.") },
@@ -1529,9 +1542,7 @@ function juanmode() {
 
     buttons.forEach(btnData => {
         const btn = document.createElement("button");
-
         btn.textContent = btnData.text;
-        btn.onclick = btnData.action;
 
         btn.style.display = "block";
         btn.style.width = "100%";
@@ -1547,19 +1558,24 @@ function juanmode() {
 
         btn.onclick = () => {
             if (btnData.media) {
+                media.style.display = "block";
                 media.src = "";
                 setTimeout(() => {
                     media.src = btnData.media;
                 }, 10);
             } else {
+                media.style.display = "none";
                 media.src = "";
+            }
+
+            if (btnData.action) {
+                btnData.action();
             }
         };
 
         wrap.appendChild(btn);
     });
 
-    options.appendChild(media);
     options.appendChild(wrap);
 }
 
