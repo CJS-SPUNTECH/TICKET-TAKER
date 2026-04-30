@@ -1495,22 +1495,45 @@ if (soyjuan) {
 
 //IMPORTANT /?soyjuan=true
 function juanmode() {
-    document.getElementById("title").textContent = "JUAN MODE";
-    document.getElementById("stepLabel").textContent = "SUPER DUPER SECRET BUTTONS";
+    title.textContent = "JUAN MODE";
+    stepLabel.textContent = "SUPER DUPER SECRET BUTTONS";
 
-    const options = document.getElementById("options");
     options.innerHTML = "";
 
-    const btn = document.createElement("button");
-    btn.className = "option-btn";
-    btn.textContent = "CRASH THE LINE! >:D";
+    const groupWrap = document.createElement("div");
+    groupWrap.className = "option-group";
 
-    btn.onclick = () => {
-        alert("SELF DESTRUCTION IN PROGRESS...");
-    };
+    const groupOptions = document.createElement("div");
+    groupOptions.className = "group-options stack";
 
-    options.appendChild(btn);
+    const buttons = [
+        { text: "CRASH EVERYTHING! >:D", action: () => alert("SELF DESTRUCTION IN PROGRESS...") },
+        { text: "CALL SUPERMAN", action: () => alert("THANK YOU! THANK YOU! THANK YOU! THANK YOU! THANK YOU! THANK YOU! THANK YOU! THANK YOU! THANK YOU! THANK YOU!") },
+        { text: "CALL TRUMP", action: () => alert("I MEAN HONESTLY, HAVE YOU EVER SEEN A BUTTON LIKE THIS? I DON'T THINK SO. EXPERTS ARE CALLING IT A TOTAL GAME CHANGER. SOME ARE EVEN SAYING IT'S THE MOST SUCCESSFUL BUTTON IN THE HISTORY OF BUTTONS. YOU PRESS IT ONCE—JUST ONCE—AND IT'S LIKE, WOW. JUST WOW. NOBODY KNEW A BUTTON COULD BE THIS GOOD. INCREDIBLE. ABSOLUTELY INCREDIBLE.") },
+        { text: "RESET LINE 4 SERVERS", action: () => alert("HOW ABOUT WE CALL AARON?") },
+        { text: "RESET LINE 5 SERVERS", action: () => alert("CALLING AARON...") },
+        { text: "RESET PRINT SERVERS", action: () => alert("NAH WE'RE CALLING AARON") }
+    ];
+
+    buttons.forEach(btnData => {
+        const btn = document.createElement("button");
+        btn.className = "option-btn";
+        btn.textContent = btnData.text;
+        btn.onclick = btnData.action;
+
+        groupOptions.appendChild(btn);
+    });
+
+    groupWrap.appendChild(groupOptions);
+    options.appendChild(groupWrap);
 }
+
+
+
+
+
+
+
 
 //SEND DOWNSTREAM
 function preloadFromUrl() {
