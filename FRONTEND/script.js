@@ -1479,6 +1479,101 @@ const options = document.getElementById("options");
 const backBtn = document.getElementById("backBtn");
 const submitBtn = document.getElementById("submitBtn");
 
+//PRELOADS
+const params = new URLSearchParams(window.location.search);
+const soyjuan = params.get("soyjuan") === "true";
+const pathParam = params.get("x");
+
+//VERIFY STARTING POINT
+if (soyjuan) {
+    juanmode();
+} else if (pathParam) {
+    preloadFromUrl();
+} else {
+    render("start");
+}
+
+//IMPORTANT /?soyjuan=true
+function juanmode() {
+    document.getElementById("title").textContent = "JUAN MODE";
+    document.getElementById("stepLabel").textContent = "SUPER DUPER SECRET BUTTONS";
+
+    const options = document.getElementById("options");
+    options.innerHTML = "";
+
+    const btn = document.createElement("button");
+    btn.className = "option-btn";
+    btn.textContent = "CRASH THE LINE! >:D";
+
+    btn.onclick = () => {
+        alert("SELF DESTRUCTION IN PROGRESS...");
+    };
+
+    options.appendChild(btn);
+}
+
+//SEND DOWNSTREAM
+function preloadFromUrl() {
+    
+    const steps = pathParam.split(",");
+
+    let node = "start";
+    selectedPath = [];
+    historyStack = [];
+
+    steps.forEach(step => {
+    const current = flow[node];
+    if (!current || !current.groups) return;
+
+    let found = null;
+
+    const optionsList = current.groups
+        ? current.groups.flatMap(g => g.options)
+        : current.options || [];
+
+    optionsList.forEach(opt => {
+        if (opt.next === step || opt.value === step) {
+        found = opt;
+        }
+    });
+
+    if (found) {
+        historyStack.push({
+        node: node,
+        path: [...selectedPath]});
+
+        selectedPath.push(found.value || found.label);
+        node = found.next;
+    }});
+
+    render(node);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 //SHOW THE SCREEN
 function render(nodeKey) {
     currentNode = nodeKey;
@@ -1796,46 +1891,6 @@ submitBtn.onclick = async () => {
 
 };
 
-function preloadFromUrl() {
-    const params = new URLSearchParams(window.location.search);
-    const pathParam = params.get("x");
-
-    if (!pathParam) return;
-
-    const steps = pathParam.split(",");
-
-    let node = "start";
-    selectedPath = [];
-    historyStack = [];
-
-    steps.forEach(step => {
-    const current = flow[node];
-    if (!current || !current.groups) return;
-
-    let found = null;
-
-    const optionsList = current.groups
-        ? current.groups.flatMap(g => g.options)
-        : current.options || [];
-
-    optionsList.forEach(opt => {
-        if (opt.next === step || opt.value === step) {
-        found = opt;
-        }
-    });
-
-    if (found) {
-        historyStack.push({
-        node: node,
-        path: [...selectedPath]});
-
-        selectedPath.push(found.value || found.label);
-        node = found.next;
-    }});
-
-    render(node);
-}
-
 async function sendTicketToBackend() {
 
     const formData = new FormData();
@@ -1861,10 +1916,4 @@ async function sendTicketToBackend() {
 
     return result;
 
-}
-
-preloadFromUrl();
-
-if (currentNode === "start") {
-    render("start");
 }
