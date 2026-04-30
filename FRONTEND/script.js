@@ -1496,15 +1496,23 @@ if (soyjuan) {
 //IMPORTANT /?soyjuan=true
 function juanmode() {
     title.textContent = "JUAN MODE";
+    title.style.textAlign = "center";
     stepLabel.textContent = "SUPER DUPER SECRET BUTTONS";
+    stepLabel.style.textAlign = "center";
 
     backBtn.style.display = "none";
     submitBtn.style.display = "none";
 
     options.innerHTML = "";
 
-    const wrap = document.createElement("div");
+    const media = document.createElement("img");
+    media.style.width = "100%";
+    media.style.maxWidth = "300px";
+    media.style.display = "block";
+    media.style.margin = "0 auto 10px auto";
+    media.style.borderRadius = "12px";
 
+    const wrap = document.createElement("div");
     wrap.style.display = "flex";
     wrap.style.flexDirection = "column";
     wrap.style.gap = "8px";
@@ -1512,7 +1520,7 @@ function juanmode() {
 
     const buttons = [
         { text: "CRASH EVERYTHING", action: () => alert("SELF DESTRUCTION IN PROGRESS...") },
-        { text: "CALL SUPERMAN", action: () => alert("THANK YOU! THANK YOU! THANK YOU! THANK YOU! THANK YOU! THANK YOU! THANK YOU! THANK YOU! THANK YOU! THANK YOU!") },
+        { text: "CALL SUPERMAN", action: () => alert("THANK YOU! THANK YOU! THANK YOU! THANK YOU! THANK YOU! THANK YOU! THANK YOU! THANK YOU! THANK YOU! THANK YOU!"), media: "ASSETS/THANKS.gif"},
         { text: "CALL TRUMP", action: () => alert("I MEAN HONESTLY, HAVE YOU EVER SEEN A BUTTON LIKE THIS? I DON'T THINK SO. EXPERTS ARE CALLING IT A TOTAL GAME CHANGER. SOME ARE EVEN SAYING IT'S THE MOST SUCCESSFUL BUTTON IN THE HISTORY OF BUTTONS. YOU PRESS IT ONCE—JUST ONCE—AND IT'S LIKE, WOW. JUST WOW. NOBODY KNEW A BUTTON COULD BE THIS GOOD. INCREDIBLE. ABSOLUTELY INCREDIBLE.") },
         { text: "RESET LINE 4 SERVERS", action: () => alert("HOW ABOUT WE CALL AARON?") },
         { text: "RESET LINE 5 SERVERS", action: () => alert("NAH WE'RE CALLING AARON.") },
@@ -1537,9 +1545,21 @@ function juanmode() {
         btn.style.borderRadius = "12px";
         btn.style.cursor = "pointer";
 
+        btn.onclick = () => {
+            if (btnData.media) {
+                media.src = "";
+                setTimeout(() => {
+                    media.src = btnData.media;
+                }, 10);
+            } else {
+                media.src = "";
+            }
+        };
+
         wrap.appendChild(btn);
     });
 
+    options.appendChild(media);
     options.appendChild(wrap);
 }
 
